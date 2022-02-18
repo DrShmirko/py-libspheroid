@@ -122,6 +122,20 @@ class SpheroidCalc(object):
                      self.get_f33()*f11, self.get_f34()*f11,
                      self.get_f44()*f11]
         return matr
+        
+    def get_full_matr(self):
+        self.km = int(lsd.mo_dls.km)
+        f11 = self.get_f11()
+        matr = np.zeros((self.km, 16), dtype='float')
+        matr[:,0] = f11
+        matr[:,1] = self.get_f12()*f11
+        matr[:,4] = matr[:,1]
+        matr[:,5] = self.get_f22()*f11
+        matr[:,10] = self.get_f33()*f11
+        matr[:,11] = self.get_f34()*f11
+        matr[:,14] = -matr[:,11]
+        matr[:,15] = self.get_f44()*f11
+        return matr
 
     def get_Ageom(self):
         r = self.get_radii()
@@ -131,6 +145,14 @@ class SpheroidCalc(object):
         S0 = np.sum(dsdlnr)*dlnr
         GA = np.pi*self.get_ext()/(self.get_lbr()*S0)
         return GA
+        
+    def get_VolC(self):
+        r = self.get_radii()
+        dlnr = np.log(r[1]/r[0])
+        dvdlnr = self.get_sd()
+        
+        V0 = np.sum(dvdlnr)*dlnr
+        return V0
     
     psd = property(get_psd, set_psd)
     radii = property(get_radii, set_radii)
@@ -151,4 +173,6 @@ class SpheroidCalc(object):
     F34 = property(get_f34)
     F44 = property(get_f44)
     MTX = property(get_matr)
+    FMTX = property(get_full_matr)
+    VolC = property(get_VolC)
     GAlb= property(get_Ageom)
