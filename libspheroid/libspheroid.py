@@ -72,6 +72,12 @@ class SpheroidCalc(object):
     def get_ext(self):
         return float(lsd.mo_dls.xext)
     
+    def get_ndp(self):
+        return int(lsd.mo_dls.ndp)
+        
+    def set_ndp(self, ndp):
+        lsd.mo_dls.ndp = ndp
+    
     def get_sca(self):
         return float(lsd.mo_dls.xsca)
     
@@ -176,3 +182,4 @@ class SpheroidCalc(object):
     FMTX = property(get_full_matr)
     VolC = property(get_VolC)
     GAlb= property(get_Ageom)
+    ndp = property(get_ndp, set_ndp)
