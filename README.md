@@ -1,6 +1,3 @@
-<script type="text/javascript" charset="utf-8" 
-src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML,
-https://vincenttam.github.io/javascripts/MathJaxLocal.js"></script>
 # py-libspheroid
 
 Это - обертка над фортрановским кодом расчета оптических свойств сфероидальных частиц. Переж созданием собственно обертки,
@@ -35,16 +32,14 @@ o = sprd.SpheroidCalc(input_fname)
 
 В файлах Aeronet есть такой параметр, как Spherical_Fraction - сверичность частиц. Для ее учета нужно сделать расчет для сфер, потом для сфероидов, а затем сложить с весом (Spherical Faraction)
 
-$$
-\tag{1}
-Tot = sf \times Spheres+(1-sf)\times Spheroids
-$$
+[](https://latex.codecogs.com/gif.latex?Tot = sf \times Spheres+(1-sf)\times Spheroids)
+
 
 Важно:
 
 При сложении нужно учитывать, что Ext, Sca  и Absb можно скаладывать как есть, но ldr и  lbr складывются по-иному.
 
-Из определения, $ldr = (S_{11}(180^\circ)-S{22}(180^\circ))/(S_{11}(180^\circ)+S{22}(180^\circ))$ - где $S_{11}(180^\circ)$, $S_{22}(180^\circ) -  элементы матриц мюллера для угра расеяния 180 градусов. Доступ к матрицам мюллера осуществляется по свойству MTX или FMTX.
+Из определения, [](https://latex.codecogs.com/gif.latex?Tot =ldr = (S_{11}(180^\circ)-S{22}(180^\circ))/(S_{11}(180^\circ)+S{22}(180^\circ))) - где $S_{11}(180^\circ)$, $S_{22}(180^\circ) -  элементы матриц мюллера для угра расеяния 180 градусов. Доступ к матрицам мюллера осуществляется по свойству MTX или FMTX.
 
 В случае MTX, $S_{11}$ будет соответствовать первому столбцу, $S_{11}$ -  второму. Последний элемент в этих столбцах как раз соответствует углу рассеяния 180 градусов.
 
