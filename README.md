@@ -1,3 +1,6 @@
+<script type="text/javascript" charset="utf-8" 
+src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML,
+https://vincenttam.github.io/javascripts/MathJaxLocal.js"></script>
 # py-libspheroid
 
 Это - обертка над фортрановским кодом расчета оптических свойств сфероидальных частиц. Переж созданием собственно обертки,
